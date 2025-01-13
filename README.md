@@ -105,8 +105,9 @@ project/
 ## Automation
 
 To automate the pipeline for daily processing, use a task scheduler:
-    Linux/Mac: Use cron to schedule the scripts.
-    Windows: Use Task Scheduler to automate execution.
+
+Linux/Mac: Use cron to schedule the scripts.
+Windows: Use Task Scheduler to automate execution.
 
     # Download articles daily at 8:00 AM, extract at 9:00 AM
 ```cron
