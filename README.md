@@ -2,12 +2,25 @@
 
 A Python-based web scraping project for extracting and processing articles from darivoa.com. The project includes tools for downloading articles, extracting clean text content, and formatting text with proper handling of Persian/Arabic text.
 
+#Features
+
+Daily Article Collection: Scrapes articles directly from the VOA Dari website.
+    Multilingual Text Processing: Handles Persian/Arabic text with proper Unicode support.
+    Automated Pipeline:
+        Downloads and organizes raw HTML articles into date-based folders.
+        Cleans and extracts main text content from the downloaded articles.
+        Segments and formats the extracted content for NLP research.
+    Output Organization: Saves processed data in structured directories (articles, article_texts, formatted_articles) by date.
+
+
+
+
 ## Project Structure
 
 The project consists of three main scripts:
-- `articleDownloader.py`: Downloads article HTML from the website
-- `textExtracter.py`: Extracts clean text content from HTML files
-- `format_text.py`: Formats and segments the extracted text
+- `articleDownloader.py`: Downloads article HTML from the website, which is saved in articles/YYYY-MM-DD
+- `textExtracter.py`: Extracts clean text content from HTML files, which is saved in article_texts/YYYY-MM-DD
+- `format_text.py`: Formats and segments the extracted text, which is saved in formatted_texts/YYYY-MM-DD
 
 ## Setup
 
@@ -77,13 +90,30 @@ python format_text.py
 ## Output Structure
 ```
 project/
-├── articles/                 # Raw HTML files
-│   └── article_[ID].html
-├── article_texts/           # Extracted text content
-│   └── article_[ID].txt
-└── formatted_texts/         # Final formatted text
-    └── article_[ID]_formatted.txt
+├── articles/                  # Raw HTML files
+│   └── YYYY-MM-DD/            # Organized by date
+├── article_texts/             # Extracted plain text files
+│   └── YYYY-MM-DD/            # Organized by date
+├── formatted_articles/        # Final segmented and formatted text files
+│   └── YYYY-MM-DD/            # Organized by date
+├── articleDownloader.py       # Script to download articles
+├── textExtracter.py           # Script to extract plain text
+├── format_text.py             # Script to format and segment text
+└── requirements.txt           # Python dependencies
 ```
+
+## Automation
+
+To automate the pipeline for daily processing, use a task scheduler:
+    Linux/Mac: Use cron to schedule the scripts.
+    Windows: Use Task Scheduler to automate execution.
+
+    # Download articles daily at 8:00 AM
+0 8 * * * /usr/bin/python3 /path/to/your/repo/articleDownloader.py
+
+# Extract and format articles at 9:00 AM
+0 9 * * * /usr/bin/python3 /path/to/your/repo/textExtracter.py
+0 9 * * * /usr/bin/python3 /path/to/your/repo/format_text.py
 
 ## Important Notes
 - The scripts include delays between requests to avoid overwhelming the server
