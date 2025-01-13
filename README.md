@@ -109,9 +109,11 @@ To automate the pipeline for daily processing, use a task scheduler:
     Windows: Use Task Scheduler to automate execution.
 
     # Download articles daily at 8:00 AM, extract at 9:00 AM
+```cron
 0 8 * * * /usr/bin/python3 /path/to/your/repo/articleDownloader.py
 0 9 * * * /usr/bin/python3 /path/to/your/repo/textExtracter.py
 0 9 * * * /usr/bin/python3 /path/to/your/repo/format_text.py
+```
 
 ## Important Notes
 - The scripts include delays between requests to avoid overwhelming the server
