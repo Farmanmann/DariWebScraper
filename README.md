@@ -108,10 +108,8 @@ To automate the pipeline for daily processing, use a task scheduler:
     Linux/Mac: Use cron to schedule the scripts.
     Windows: Use Task Scheduler to automate execution.
 
-    # Download articles daily at 8:00 AM
+    # Download articles daily at 8:00 AM, extract at 9:00 AM
 0 8 * * * /usr/bin/python3 /path/to/your/repo/articleDownloader.py
-
-# Extract and format articles at 9:00 AM
 0 9 * * * /usr/bin/python3 /path/to/your/repo/textExtracter.py
 0 9 * * * /usr/bin/python3 /path/to/your/repo/format_text.py
 
